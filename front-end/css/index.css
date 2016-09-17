@@ -1,0 +1,141 @@
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eeeeee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #673ab7;
+}
+
+.content, .content-w {
+  width: auto;
+  height: 100%;
+}
+
+.content {
+  margin: 20px 20px;
+}
+
+.content-w {
+  margin: 0px 20px;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: block;
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: "Roboto", sans-serif;
+}
+
+#voice-recognition {
+  display: block;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background: #512da8;
+}
+#voice-recognition #voice-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+#voice-recognition .voice-input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  height: 150px;
+  width: 150px;
+  background: white;
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25), inset 0 0 0 0 #ff4081;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25), inset 0 0 0 0 #ff4081;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+#voice-recognition .voice-input .mic {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 60%;
+  fill: #ff4081;
+  -webkit-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+#voice-recognition .voice-input:hover {
+  -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25), inset 0 0 0 150px #ff4081;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25), inset 0 0 0 150px #ff4081;
+}
+#voice-recognition .voice-input:hover .mic {
+  fill: #eeeeee;
+}
+
+#container {
+  display: block;
+  position: relative;
+  top: 100vh;
+  min-height: 200vh;
+  height: auto;
+  width: 100%;
+  background: white;
+}
+#container #menu {
+  display: block;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5rem;
+  margin: 0;
+  padding: 0;
+  background: white;
+}
+#container #menu .left, #container #menu .right {
+  display: block;
+  position: relative;
+  height: 100%;
+}
+#container #menu .left .item, #container #menu .right .item {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+#container #menu .left .item h1, #container #menu .right .item h1 {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+#container #menu .left .item i, #container #menu .right .item i {
+  font-size: 1.5rem;
+}
+#container #menu .left {
+  float: left;
+  margin-right: 10px;
+}
+#container #menu .right {
+  float: right;
+  margin-left: 10px;
+}
