@@ -17,7 +17,7 @@ def functions_LED(keywords):
     blue2 = LED(8)
     default_vals={'red':'off','green':'off','blue':'off'}
     for keyword in keywords:
-        if keyword=="on" or keyword="up":
+        if keyword=="on" or keyword=="up":
             if "red" in keywords:
                 red1.on()
                 red2.on()
