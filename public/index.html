@@ -14,7 +14,6 @@
         <script type="text/javascript" src="js/jquery.js"></script>
     </head>
     <body>
-
         <div id="menux">
             <div id="menu-content">
                 <div class="menu-header">
@@ -96,7 +95,7 @@
             <div id="device"class="feature">
                 <div class="heading">
                     <div class="content-w">
-                        <h2>Devices Connected</h2>
+                        <h2><i class="fa fa-laptop"></i> Devices Connected</h2>
                     </div>
                 </div>
                 <div class="content-w">
@@ -109,14 +108,6 @@
 
             <!-- Emotion -->
             <div id="pic"class="feature dark transparent">
-                <!--<div class="heading">
-                    <div class="content-w">
-                        <div class="image-menu">
-                            <div class="image-menu-item" id="capture"><i class="fa fa-camera"></i></div>
-                            <span>Let's try some emotion?</span>
-                        </div>
-                    </div>
-                </div>-->
                 <div class="heading image-menu">
                     <div class="content-w">
                         <div class="image-menu-item" id="capture"><i class="fa fa-camera"></i></div><h2>Let's try some emotion</h2>
@@ -134,35 +125,25 @@
             <div id="music"class="now-playing feature dark">
                 <div class="heading">
                     <div class="content-w">
-                        <h2>Now Playing</h2>
+                        <h2><i class="fa fa-headphones"></i> Now Playing</h2>
                     </div>
                 </div>
                 <div class="content-w">
-                    <div class="left">
-                        <div class="cover-art picture" data-bg="assets/demo.jpg"></div>
-                        <div class="controls">
-                            <div class="control-bar">
-                                <div class="player-control" id="prev">
-                                    <i class="fa fa-step-backward"></i>
-                                </div>
-                                <div class="player-control" id="musictrigger">
-                                    <i class="fa fa-play"></i>
-                                    <i class="fa fa-pause"></i>
-                                </div>
-                                <div class="player-control" id="next">
-                                    <i class="fa fa-step-forward"></i>
-                                </div>
-                            </div>
+                    <div id='seed' class='centered'>
+                        <h3>Who is your favorite artist to listen to?</h3>
+                        <div class="input">
+                            <input title="Artist" type="text"  size=34 id="artist" name="artist" value='Led Zeppelin'/>
+                            <button class="btn btn-sm" value="go" id="go" name="go"> Go </button>
                         </div>
-                        <div class="details">
-                            <h1 id="song-name">42</h1>
-                            <h2 id="song-artist">Coldplay</h1>
-                        </div>
+                    </div>
+                    <div id="all_results" class="left">
+
                     </div>
                     <div class="right">
                         <div class="heading">
-                            <h2>Current Playlist</h2>
-                            <h1>Sad Euphoria</h1>
+                            <h2>Songs that match</h2>
+                            <h1 id="m-artist">Led Zeppelin</h1>
+                            <div id="info-song"></div>
                         </div>
                         <div id="songs" class="songs">
 
@@ -184,5 +165,6 @@
         <script type="text/javascript" src="js/voiceCanvas.js"></script>
         <script type="text/javascript" src="js/camera.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/spotify.js"></script>
     </body>
 </html>

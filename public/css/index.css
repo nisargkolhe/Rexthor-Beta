@@ -403,7 +403,7 @@ body {
 .now-playing > .content-w {
   margin: 0 0 0 20px;
 }
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
   .now-playing > .content-w {
     margin: 0 20px;
   }
@@ -413,24 +413,59 @@ body {
   padding-bottom: 0;
   margin-top: 0;
 }
+.now-playing h3 {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #757575;
+}
+.now-playing .input {
+  position: relative;
+  width: auto;
+  margin: 5px 0 20px 0;
+}
+.now-playing .input input[type="text"] {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.15rem;
+  padding: 5px 20px;
+  color: whitesmoke;
+  font-weight: 300;
+  border: solid 1px #00b16a;
+  border-radius: 20px;
+}
+.now-playing .input button {
+  border: none;
+  outline: none;
+  background: #00b16a;
+  color: whitesmoke;
+  font-size: 1.15rem;
+  padding: 6px 10px;
+  font-weight: 300;
+  border-radius: 0 20px 20px 0;
+  -webkit-transform: translateX(-20px);
+  -ms-transform: translateX(-20px);
+  transform: translateX(-20px);
+  border-left: solid 1px #00b16a;
+}
 .now-playing .left {
   float: none;
   position: absolute;
   height: 90vh;
-  width: 400px;
+  width: 200px;
   margin-bottom: 30px;
 }
 @media (min-width: 1000px) {
   .now-playing .left {
-    width: 600px;
+    width: 400px;
   }
 }
 @media (min-width: 1280px) {
   .now-playing .left {
-    width: 800px;
+    width: 600px;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
   .now-playing .left {
     position: relative;
     width: 100%;
@@ -438,74 +473,49 @@ body {
     margin-bottom: 15px;
   }
 }
-.now-playing .left .cover-art, .now-playing .left .controls {
+.now-playing .left .cover-art, .now-playing .left .sp-album-art {
   position: absolute;
   height: 100%;
   width: 100%;
   -webkit-filter: brightness(0.75) contrast(1.15);
   filter: brightness(0.75) contrast(1.15);
 }
-.now-playing .left .controls {
-  opacity: 0;
-  background: rgba(0, 0, 0, 0.5);
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-.now-playing .left .controls:hover {
-  opacity: 1;
-}
-.now-playing .left .controls .control-bar {
+.now-playing .left .details, .now-playing .left .sp-info, .now-playing .left .sp-controls {
   position: absolute;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  width: 100%;
-  text-align: center;
-}
-.now-playing .left .controls .control-bar .player-control {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  font-size: 20px;
-  text-align: center;
-  color: white;
-  -webkit-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-}
-.now-playing .left .controls .control-bar .player-control:hover {
-  cursor: pointer;
-  -webkit-box-shadow: inset 0 0 0 35px rgba(0, 177, 106, 0.5);
-  box-shadow: inset 0 0 0 35px rgba(0, 177, 106, 0.5);
-  border-radius: 50%;
-}
-.now-playing .left .controls .control-bar .player-control i {
-  display: inline-block;
-  position: relative;
-  top: 15px;
-}
-.now-playing .left .details {
-  position: absolute;
-  top: 50px;
+  top: 10px;
   left: 0px;
 }
-.now-playing .left .details h1, .now-playing .left .details h2 {
+.now-playing .left .details h1, .now-playing .left .details h2, .now-playing .left .details .sp-title, .now-playing .left .details .sp-artist, .now-playing .left .sp-info h1, .now-playing .left .sp-info h2, .now-playing .left .sp-info .sp-title, .now-playing .left .sp-info .sp-artist, .now-playing .left .sp-controls h1, .now-playing .left .sp-controls h2, .now-playing .left .sp-controls .sp-title, .now-playing .left .sp-controls .sp-artist {
   padding: 2px 10px;
   margin: 0;
 }
-.now-playing .left .details h1 {
+.now-playing .left .details h1, .now-playing .left .details .sp-title, .now-playing .left .sp-info h1, .now-playing .left .sp-info .sp-title, .now-playing .left .sp-controls h1, .now-playing .left .sp-controls .sp-title {
   font-size: 2rem;
   font-weight: 300;
   color: white;
   background: rgba(0, 177, 106, 0.75);
   width: auto;
 }
-.now-playing .left .details h2 {
+.now-playing .left .details h2, .now-playing .left .details .sp-artist, .now-playing .left .sp-info h2, .now-playing .left .sp-info .sp-artist, .now-playing .left .sp-controls h2, .now-playing .left .sp-controls .sp-artist {
   font-size: 1.25rem;
   font-weight: 400;
   color: #00b16a;
   background: rgba(255, 255, 255, 0.75);
   width: auto;
+}
+.now-playing .left .details button, .now-playing .left .details .btn, .now-playing .left .details .btn-sm, .now-playing .left .sp-info button, .now-playing .left .sp-info .btn, .now-playing .left .sp-info .btn-sm, .now-playing .left .sp-controls button, .now-playing .left .sp-controls .btn, .now-playing .left .sp-controls .btn-sm {
+  outline: none;
+  border: none;
+  background: rgba(0, 177, 106, 0.75);
+  width: 50px;
+  height: 50px;
+}
+.now-playing .left .details button i, .now-playing .left .details .btn i, .now-playing .left .details .btn-sm i, .now-playing .left .sp-info button i, .now-playing .left .sp-info .btn i, .now-playing .left .sp-info .btn-sm i, .now-playing .left .sp-controls button i, .now-playing .left .sp-controls .btn i, .now-playing .left .sp-controls .btn-sm i {
+  color: whitesmoke;
+}
+.now-playing .left .sp-controls {
+  top: 90px;
+  left: 0;
 }
 .now-playing .right {
   float: none;
@@ -515,7 +525,7 @@ body {
   height: 90vh;
   width: auto;
   padding-right: 20px;
-  margin: 0 0 30px 420px;
+  margin: 0 0 30px 220px;
 }
 .now-playing .right .heading {
   position: -webkit-sticky;
@@ -536,15 +546,15 @@ body {
 }
 @media (min-width: 1000px) {
   .now-playing .right {
-    margin: 0 0 0 620px;
+    margin: 0 0 0 420px;
   }
 }
 @media (min-width: 1280px) {
   .now-playing .right {
-    margin: 0 0 0 820px;
+    margin: 0 0 0 620px;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
   .now-playing .right {
     position: relative;
     margin: 0 0 30px 0;

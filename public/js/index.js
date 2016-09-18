@@ -21,60 +21,24 @@ $(document).ready(function(){
                 'image': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Raspberry_Pi_Logo.svg/512px-Raspberry_Pi_Logo.svg.png'
             },
             {
-                'name': "Philips LED - Floor",
-                'data': [['Color', 'Multiple'],['Status', 'On']],
-                'commands': ['Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'],
+                'name': "LED",
+                'data': [['Color', 'Red'],['Status', 'Off']],
+                'commands': ['Any combination of "Red", "Light" and "On"', 'eg: "red light on".'],
                 'image': 'http://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/topic_images/2014/phillips-hue.png'
             },
             {
-                'name': "Philips LED - Bedside",
-                'data': [['Color', 'Yellow'],['Status', 'Off']],
-                'commands': ["Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
+                'name': "LED",
+                'data': [['Color', 'Blue'],['Status', 'Off']],
+                'commands': ['Any combination of "Red", "Light" and "On"', 'eg: "red light on".'],
+                'image': 'http://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/topic_images/2014/phillips-hue.png'
+            },
+            {
+                'name': "LED",
+                'data': [['Color', 'Green'],['Status', 'Off']],
+                'commands': ['Any combination of "Red", "Light" and "On"', 'eg: "red light on".'],
                 'image': 'http://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/topic_images/2014/phillips-hue.png'
             }
 
-        ],
-        'songs': [
-            {
-                'name': 'Strawberry Swing',
-                'artist': 'Coldplay',
-                'album': 'Viva La Vida',
-                'buy-link': '',
-                'spotify-link': '',
-                'art': 'assets/demo.jpg'
-            },
-            {
-                'name': '42',
-                'artist': 'Coldplay',
-                'album': 'Viva La Vida',
-                'buy-link': '',
-                'spotify-link': '',
-                'art': 'assets/demo.jpg'
-            },
-            {
-                'name': 'Viva La Vida',
-                'artist': 'Coldplay',
-                'album': 'Viva La Vida',
-                'buy-link': '',
-                'spotify-link': '',
-                'art': 'assets/demo.jpg'
-            },
-            {
-                'name': 'Violet Hill',
-                'artist': 'Coldplay',
-                'album': 'Viva La Vida',
-                'buy-link': '',
-                'spotify-link': '',
-                'art': 'assets/demo.jpg'
-            },
-            {
-                'name': 'Life in Technicolor',
-                'artist': 'Coldplay',
-                'album': 'Viva La Vida',
-                'buy-link': '',
-                'spotify-link': '',
-                'art': 'assets/demo.jpg'
-            }
         ]
     };
 
@@ -91,13 +55,13 @@ $(document).ready(function(){
         el += "</div></div></div></div>";
         $('#devices').append(el);
     }
-
+/*
     for (var i = 0; i < data.songs.length; i++) {
         var el = "<div class='song'><div class='picture cover-art' data-bg='" + data.songs[i].art + "'></div><div class='desc'><h1>" + data.songs[i]['name'] + "</h1><h2>" + data.songs[i].artist + " - " + data.songs[i].album + "</h2><a href='"+ data.songs[i]['buy-link'] +"'>Buy</a> <span>&bull;</span>";
         el += " <a href='" + data.songs[i]['spotify-link'] + "'>View on Spotify</a></div></div>";
         $('#songs').append(el);
     }
-
+*/
     $('.picture').each(function(){
         $this = $(this);
         $this.css({
