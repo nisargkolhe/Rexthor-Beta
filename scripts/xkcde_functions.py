@@ -18,6 +18,7 @@ def intrepreter(text):
     for keyword in keywords:
         if keyword in listLED:
             functions_LED()
+            break
         elif keyword in listMusic:
             functions_Music()
             break
@@ -39,25 +40,33 @@ def functions_LED():
             if "red" in keywords:
                 red1.on()
                 red2.on()
+                break
             elif "green" in keywords:
                 green1.on()
                 green.on()
+                break
             else:
-                blue.on()
+                blue1.on()
+                blue2.on()
+                break
 
         elif keyword=="off":
-            if "red" in keywords:
-                red1.off()
-                red2.off()
-            elif "yellow" in keywords:
-                yellow1.off()
-                yellow2.off()
+           if "red" in keywords:
+                red1.on()
+                red2.on()
+                break
+            elif "green" in keywords:
+                green1.on()
+                green.on()
+                break
             else:
-                green1.off()
-                green2.off()
+                blue1.on()
+                blue2.on()
+                break
 
         else:
             continue
+        
 
 def functions_Music():
     """ Judges which music function to use."""
