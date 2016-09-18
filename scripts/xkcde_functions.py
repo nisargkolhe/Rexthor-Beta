@@ -32,7 +32,7 @@ def functions_LED(keywords):
                 default_vals['blue']='on'
 
         elif keyword=="off":
-           if "red" in keywords:
+            if "red" in keywords:
                 red1.on()
                 red2.on()
                 default_vals['red']='off'
