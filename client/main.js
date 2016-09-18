@@ -3,20 +3,52 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
+Session.set("recording", false);
+Session.set("speechText", "nothing yet");
+
+
+// set up the main template the the router will use to build pages
+Router.configure({
+  layoutTemplate: 'ApplicationLayout'
+});
+// specify the top level route, the page users see when they arrive at the site
+Router.route('/', function () {
+  this.render("home", {to:"main"}); 
 });
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
+Template.home.helpers({
+	message: function(){
+		/*Meteor.call('getAccessToken', function(err,res){ 
+			return res;
+		});*/
+		return Session.get("speechText");
+	}
 });
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
+
+var audioRecorder = new AudioRecorder();
+
+Template.home.events({
+	"click .js-voice": function(event){
+		console.log("button clicked");
+		if(!Session.get("recording")){
+			Session.set("recording", true);
+		}
+		else{
+			var textFinal = $('#final_span').html();
+			var textInt = $('#interim_span').html();
+
+			Session.set("speechText", textFinal + " " + textInt);
+
+			Meteor.call('getAccessToken',  function(error,result){ 
+				if(error){
+					console.log(error.reason);
+				}
+				console.log(result);
+			});
+			Session.set("recording", false);
+		}
+		
+	}
+
 });
