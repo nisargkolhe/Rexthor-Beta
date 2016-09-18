@@ -2,6 +2,105 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
   // code to run on server at startup
+  var data = {
+        'devices' : [
+            {
+                'name': "Ishaan's Macbook Pro",
+                'data': {
+                	'IP': '127.0.0.1',
+                	'Status': 'On'
+                },
+                'commands': ['Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'],
+                'image': 'https://upload.wikimedia.org/wikipedia/commons/0/07/Macbook_Pro_PSD.png'
+            },
+            {
+                'name': "Google Nexus 6P",
+                'data': {
+                	'IP': '127.0.0.2',
+                	'Status': 'On'
+                },
+                'commands': ['Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'],
+                'image': 'http://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/topic_images/2015/nexus-6p-topic-full.png'
+            },
+            {
+                'name': "Raspberry Pi 3",
+                'data': {
+                	'IP': '127.0.0.42',
+                	'Status': 'On'
+                },
+                'commands': ['Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'],
+                'image': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Raspberry_Pi_Logo.svg/512px-Raspberry_Pi_Logo.svg.png'
+            },
+            {
+                'name': "Philips LED - Floor",
+                'data': {
+                	'Color': 'Multiple',
+                	'Status': 'On'
+                },
+                'commands': ['Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'],
+                'image': 'http://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/topic_images/2014/phillips-hue.png'
+            },
+            {
+                'name': "Philips LED - Bedside",
+                'data': {
+                	'Color': 'Yellow',
+                	'Status': 'On'
+                },
+                'commands': ["Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
+                'image': 'http://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/topic_images/2014/phillips-hue.png'
+            }
+
+        ],
+        'songs': [
+            {
+                'name': 'Strawberry Swing',
+                'artist': 'Coldplay',
+                'album': 'Viva La Vida',
+                'buy-link': '',
+                'spotify-link': '',
+                'art': 'assets/demo.jpg'
+            },
+            {
+                'name': '42',
+                'artist': 'Coldplay',
+                'album': 'Viva La Vida',
+                'buy-link': '',
+                'spotify-link': '',
+                'art': 'assets/demo.jpg'
+            },
+            {
+                'name': 'Viva La Vida',
+                'artist': 'Coldplay',
+                'album': 'Viva La Vida',
+                'buy-link': '',
+                'spotify-link': '',
+                'art': 'assets/demo.jpg'
+            },
+            {
+                'name': 'Violet Hill',
+                'artist': 'Coldplay',
+                'album': 'Viva La Vida',
+                'buy-link': '',
+                'spotify-link': '',
+                'art': 'assets/demo.jpg'
+            },
+            {
+                'name': 'Life in Technicolor',
+                'artist': 'Coldplay',
+                'album': 'Viva La Vida',
+                'buy-link': '',
+                'spotify-link': '',
+                'art': 'assets/demo.jpg'
+            }
+        ]
+    };
+    if (!Devices.findOne()){
+	    for(var i = 0; i < data.devices.length; i++){
+	    	Devices.insert(data.devices[i]);
+	    	console.log(data.devices[i]);
+	    }
+	}
+
 });
 
 exec = Npm.require('child_process').exec;
@@ -49,9 +148,9 @@ Meteor.methods({
 		return false;
 
 	},
-	consoleExecSync : function(seq) {
+	consoleExecSync : function(seq, emotion) {
 
-			var cmd = "python ~/Desktop/scripts/xkcde_Control.py \""+seq+"\"";
+			var cmd = "python ~/Desktop/scripts/xkcde_Control.py \""+seq+"\" "+emotion;
 
 			exec(cmd, Meteor.bindEnvironment(
 				function(error, stdout, stderr) {

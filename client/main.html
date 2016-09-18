@@ -10,7 +10,7 @@
   {{> yield "header"}}
   
   {{> yield "landing"}}
-  {{> yield "body"}}}
+  {{> yield "body"}}
 </template>
 
 <!--<template name="home">
@@ -19,7 +19,26 @@
 </template>-->
 
 <template name="header">
-  {{header}}
+<div id="menux">
+            <div id="menu-content">
+                <div class="menu-header">
+                    <!--<img src="assets/me.jpg">-->
+                    <div class="header-content">
+                        <h3>Menu</h3>
+                    </div>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item"><a href="#" class="scroller" scrollTo="#voice-recognition"><i class="fa fa-microphone"></i>Voice Command</a></div>
+                    <h5>What do you wanna see?</h5>
+                    <div class="menu-item"><a href="#" class="scroller" scrollTo="#device"><i class="fa fa-laptop"></i>Devices Paired</a></div>
+                    <div class="menu-item"><a href="#" class="scroller" scrollTo="#pic"><i class="fa fa-smile-o"></i>Emotion Recogntion</a></div>
+                    <div class="menu-item"><a href="#" class="scroller" scrollTo="#music"><i class="fa fa-headphones"></i>Now Playing</a></div>
+                </div>
+                <div class="menu-footer">
+                    <a class="scroller" scrollTo="#thoughts"><em>Feeling low? Try an upbeat playlist!</em></a>
+                </div>
+            </div>
+        </div>
 </template>
 
 <template name="video">
@@ -31,6 +50,28 @@
 <template name="frame">
 {{>home}}
 {{>bodyFeatures}}
+<script type="text/javascript">
+  $('.trigger').click(function(){
+        if ($(window).scrollTop() > $(window).outerHeight()){
+            $('#menux').toggleClass('visible');
+            $(this).toggleClass('open');
+        }
+    });
+
+    $('.scroller').click(function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var dest = $($this.attr("scrollTo")).offset().top;
+    $("html,body").animate({scrollTop: dest},600,$.bez([.56,0,.39,1]));
+    });
+
+    $(window).scroll(function(){
+        if ($('#menux').hasClass('visible')){
+            $('#menux').removeClass('visible');
+            $('.trigger').removeClass('open');
+        }
+    });
+</script>
 </template>
 
 <template name="home"> 
@@ -325,6 +366,15 @@ voiceInput.addEventListener("mousedown", function(e){
             {{> devices}}
             {{> emotions}}
             {{> music}}
+
+            <!-- Footer -->
+            <div class="feature footer dark">
+                <div class="content">
+                    <p>
+                        Developed by <a href="#">Nisarg Kolhe</a>, <a href="#">Dimple Dhawan</a>, <a href="#">Shivam Bajpayi</a> &amp; <a href="#">Ishaan Saxena</a>. Designed by Ishaan Saxena.
+                    </p>
+                </div>
+            </div>
         </div>
 </template>
 
@@ -332,14 +382,14 @@ voiceInput.addEventListener("mousedown", function(e){
   <div id="pic" class="feature dark transparent">
       <div class="heading">
                     <div class="content-w">
-                        <div class="image-menu">
-                            <div class="image-menu-item" id="capture"><i class="fa fa-camera"></i></div>
+                        <div class="image-menu js-capture">
+                            <div class="image-menu-item js-capture" id="capture"><i class="fa fa-camera js-capture"></i></div>
                             <span>Let's try some emotion?</span>
                         </div>
                     </div>
                 </div>
       <div class="content-h">
-          <video class="webcam" autoplay></video>
+          <video class="webcam js-capture" autoplay></video>
           <img src="" style="display: none;">
 <canvas style="display:none; position: absolute; width:auto; height:100% " id="photo"></canvas>
           <input type="file" style="display:none" accept="image/*;capture=camera">
@@ -396,23 +446,33 @@ navigator.getUserMedia({video: true, audio: false}, function(stream) {
                 </div>
                 <div class="content-w">
                     <div class="tile-row">
+                    {{#each devices}}
                         <div class="tile">
-                            <div class="image"></div>
-                            <div class="desc">
-                                <div class="left">
-                                    <h3>Ishaan's Macbook Pro</h3>
-                                    <h5>Commands:</h5>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    </p>
-                                </div>
-                                <div class="right">
-                                    <h5>IP : <span>127.0.0.1</span></h5>
-                                    <h5>Color: <span>Red</span></h5>
-                                    <h5>Status: <span class="on">On</span></h5>
-                                </div>
+                            <div class="content">
+                              <div class="image">
+                              <div class="image picture-contain" data-bg="{{image}}" style="background: url(&quot;{{image}}&quot;) center center / contain no-repeat;"></div>
+                              </div>
+                              <div class="desc">
+                                  <div class="left">
+                                      <h3>{{name}}</h3>
+                                      <h5>Commands:</h5>
+                                      <p>
+                                          {{commands}}
+                                      </p>
+                                  </div>
+                                  <div class="right">
+                                  {{#if data.IP}}
+                                      <h5>IP : <span>{{data.IP}}</span></h5>
+                                  {{/if}}
+                                  {{#if data.Color}}
+                                      <h5>Color: <span>{{data.Color}}</span></h5>
+                                  {{/if}}
+                                      <h5>Status: <span class="on">On</span></h5>
+                                  </div>
+                              </div>
                             </div>
                         </div>
+                      {{/each}}
                     </div>
                     
                 </div>
@@ -459,15 +519,6 @@ navigator.getUserMedia({video: true, audio: false}, function(stream) {
                             <div class="song"><div class="picture cover-art" data-bg="assets/demo.jpg" style="background: url(&quot;assets/demo.jpg&quot;) center center / cover no-repeat;"></div><div class="desc"><h1>Strawberry Swing</h1><h2>Coldplay - Viva La Vida</h2><a href="">Buy</a> <span>•</span> <a href="">View on Spotify</a></div></div>
                             <div class="song"><div class="picture cover-art" data-bg="assets/demo.jpg" style="background: url(&quot;assets/demo.jpg&quot;) center center / cover no-repeat;"></div><div class="desc"><h1>Strawberry Swing</h1><h2>Coldplay - Viva La Vida</h2><a href="">Buy</a> <span>•</span> <a href="">View on Spotify</a></div></div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Footer -->
-                <div class="feature footer dark">
-                    <div class="content">
-                        <p>
-                            Developed by <a href="#">Nisarg Kolhe</a>, <a href="#">Dimple Dhawan</a>, <a href="#">Shivam Bajpayi</a> &amp; <a href="#">Ishaan Saxena</a>. Designed by Ishaan Saxena.
-                        </p>
                     </div>
                 </div>
 

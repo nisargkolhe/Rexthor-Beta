@@ -5,7 +5,7 @@ import './main.html';
 
 Session.set("recording", false);
 Session.set("speechText", "nothing yet");
-
+Session.set("emotion", "neutral");
 
 // set up the main template the the router will use to build pages
 Router.configure({
@@ -13,10 +13,14 @@ Router.configure({
 });
 // specify the top level route, the page users see when they arrive at the site
 Router.route('/', function () {
+  this.render("header", {to:"header"})
   this.render("home", {to:"landing"}); 
   this.render("bodyFeatures", {to:"body"}); 
 
 });
+
+Meteor.subscribe("devices");
+Meteor.subscribe("songs");
 
 Template.home.helpers({
 	message: function(){
@@ -50,7 +54,7 @@ Template.home.events({
 
 			Session.set("recording", false);
 
-			Meteor.call('consoleExecSync', textFinal + " " + textInt, function(err,res){
+			Meteor.call('consoleExecSync', textFinal + " " + textInt,Session.get("emotion"), function(err,res){
       				if(err){
 						console.log(err.reason);
 					}
@@ -61,12 +65,20 @@ Template.home.events({
 	}
 
 });
+Template.emotions.rendered = function(){
+	capture();
+};
 
 Template.emotions.events({
 	"click .js-capture": function(event){
-		
-  
-      var video = document.querySelector('video');
+		capture();
+		var win = window.open(document.querySelector('img').src);
+      win.focus();	     
+	}
+});
+
+function capture(){
+	var video = document.querySelector('video');
 
       var b_canvas1 = document.getElementById("photo");
       b_canvas1.width = 640;
@@ -90,17 +102,35 @@ Template.emotions.events({
       		if(error){
       			console.log(error);
       		}
-      		else
+      		else{
       			console.log(data.link);
-      			Meteor.call('getEmotions', data.link, function(err,res){
-      				if(err){
+	  			Meteor.call('getEmotions', data.link, function(err,res){
+	  				if(err){
 						console.log(err.reason);
 					}
 					console.log(res);
-      			});
+					if(res.length>0){
+						var max = 0;
+						var sortable = [];
+						for (var emotion  in res[0].scores)
+						      sortable.push([emotion, res[0].scores[emotion]])
+						     sortable.sort(
+						    function(b, a) {
+						        return a[1] - b[1]
+						    }
+						)
+						console.log(sortable[0]);
+						Session.set("emotion",sortable[0][0]);
+					}
+	  			});
+  			}
       });
 
-      var win = window.open(document.querySelector('img').src);
-      win.focus();	    
+      
+}
+
+Template.devices.helpers({
+	devices: function(){
+		return Devices.find({},{});
 	}
 });
