@@ -8,41 +8,154 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-        <!-- Scripts -->
-        <script type="text/javascript" src="js/index.js"></script>
     </head>
     <body>
         <div id="voice-recognition">
             <canvas id="voice-canvas"></canvas>
-            <div class="voice-input">
-                <svg class="mic" viewBox="0 0 480 480">
-                <g>
-                  	<path d="M290.991,240.991c0,26.392-21.602,47.999-48.002,47.999h-11.529c-26.4,0-48.002-21.607-48.002-47.999V104.002   c0-26.4,21.602-48.004,48.002-48.004h11.529c26.4,0,48.002,21.604,48.002,48.004V240.991z"/>
-                  	<path d="M342.381,209.85h-8.961c-4.932,0-8.961,4.034-8.961,8.961v8.008c0,50.26-37.109,91.001-87.361,91.001   c-50.26,0-87.109-40.741-87.109-91.001v-8.008c0-4.927-4.029-8.961-8.961-8.961h-8.961c-4.924,0-8.961,4.034-8.961,8.961v8.008   c0,58.862,40.229,107.625,96.07,116.362v36.966h-34.412c-4.932,0-8.961,4.039-8.961,8.971v17.922c0,4.923,4.029,8.961,8.961,8.961   h104.688c4.926,0,8.961-4.038,8.961-8.961v-17.922c0-4.932-4.035-8.971-8.961-8.971h-34.43v-36.966   c55.889-8.729,96.32-57.5,96.32-116.362v-8.008C351.342,213.884,347.303,209.85,342.381,209.85z"/>
-                </g>
-            </svg>
+                <button onclick="startButton(event)" class="js-voice" id="voice-input">
+                    <svg class="mic" viewBox="0 0 480 480">
+                        <g>
+                          	<path d="M290.991,240.991c0,26.392-21.602,47.999-48.002,47.999h-11.529c-26.4,0-48.002-21.607-48.002-47.999V104.002   c0-26.4,21.602-48.004,48.002-48.004h11.529c26.4,0,48.002,21.604,48.002,48.004V240.991z"/>
+                          	<path d="M342.381,209.85h-8.961c-4.932,0-8.961,4.034-8.961,8.961v8.008c0,50.26-37.109,91.001-87.361,91.001   c-50.26,0-87.109-40.741-87.109-91.001v-8.008c0-4.927-4.029-8.961-8.961-8.961h-8.961c-4.924,0-8.961,4.034-8.961,8.961v8.008   c0,58.862,40.229,107.625,96.07,116.362v36.966h-34.412c-4.932,0-8.961,4.039-8.961,8.971v17.922c0,4.923,4.029,8.961,8.961,8.961   h104.688c4.926,0,8.961-4.038,8.961-8.961v-17.922c0-4.932-4.035-8.971-8.961-8.971h-34.43v-36.966   c55.889-8.729,96.32-57.5,96.32-116.362v-8.008C351.342,213.884,347.303,209.85,342.381,209.85z"/>
+                        </g>
+                    </svg>
+                </button>
+            <div id="voice-text">
+                Tap the mic to start speaking<br><a href="#">or click here to scroll down.</a>
             </div>
         </div>
         <div id="container">
             <div id="menu">
                 <div class="content-w">
-                    <div class="left">
-                        <div class="item">
-                            <i class="fa fa-home"></i>
-                        </div>
-                    </div>
-                    <div class="left">
-                        <div class="item">
-                            <h1>SmartHome</h1>
-                        </div>
-                    </div>
                     <div class="right">
                         <div class="item">
                             <i class="fa fa-bars"></i>
                         </div>
                     </div>
                 </div>
+                <div class="mic">
+                    <i class="fa fa-microphone"></i>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="heading">
+                    <div class="content-w">
+                        <h2>Devices Connected</h2>
+                    </div>
+                </div>
+                <div class="content-w">
+                    <div class="tile-row">
+                        <div class="tile">
+                            <div class="image"></div>
+                            <div class="desc">
+                                <div class="left">
+                                    <h3>Ishaan's Macbook Pro</h3>
+                                    <h5>Commands:</h5>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                </div>
+                                <div class="right">
+                                    <h5>IP : <span>127.0.0.1</span></h5>
+                                    <h5>Status: <span class="on">On</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="image"></div>
+                            <div class="desc">
+                                <div class="left">
+                                    <h3>Google Nexus 6P</h3>
+                                    <h5>Commands:</h5>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                </div>
+                                <div class="right">
+                                    <h5>IP : <span>127.0.0.42</span></h5>
+                                    <h5>Status: <span class="on">On</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-row">
+                        <div class="tile">
+                            <div class="image"></div>
+                            <div class="desc">
+                                <div class="left">
+                                    <h3>Raspberry Pi 3</h3>
+                                    <h5>Commands:</h5>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                </div>
+                                <div class="right">
+                                    <h5>IP : <span>0.0.0.0</span></h5>
+                                    <h5>Status: <span class="on">On</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="image"></div>
+                            <div class="desc">
+                                <div class="left">
+                                    <h3>Philips LED Lighting - Ceiling</h3>
+                                    <h5>Commands:</h5>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                </div>
+                                <div class="right">
+                                    <h5>Color: <span>Red</span></h5>
+                                    <h5>Status: <span class="on">On</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-row">
+                        <div class="tile">
+                            <div class="image"></div>
+                            <div class="desc">
+                                <div class="left">
+                                    <h3>Philips LED Lighting - Bed</h3>
+                                    <h5>Commands:</h5>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                </div>
+                                <div class="right">
+                                    <h5>Status: <span class="off">Off</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile empty">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feature transparent">
+                <div class="heading">
+                    <div class="content-w">
+                        <h2>Let's try emotions!</h2>
+                    </div>
+                </div>
+                <div class="content-w">
+
+                </div>
+            </div>
+            <div class="now-playing feature dark">
+                <div class="heading">
+                    <div class="content-w">
+                        <h2>Now Playing</h2>
+                    </div>
+                </div>
+                <div class="content-w">
+
+                </div>
             </div>
         </div>
+        <!-- Scripts -->
+        <script type="text/javascript" src="js/voiceCanvas.js"></script>
     </body>
 </html>
