@@ -4,7 +4,7 @@ functions.
 """
 from gpiozero import LED
 from time import sleep
-
+import sys
 
 def functions_LED(keywords):
     """ Judges which function to use."""
@@ -52,5 +52,11 @@ def functions_LED(keywords):
 
 def functions_Music(keywords, emotion):
     """ Judges which music function to use."""
-    print("Something with Music")
-    return 2
+    SPOTIFY_CLIENT_ID=''
+    SPOTIFY_CLIENT_SECRET=''
+    SPOTIFY_URI_REDIRECT=''
+
+    # TODO implement emotion feedback into Spotify's seed-lists to get
+    # customized playlists according to mood.
+
+    return uri
