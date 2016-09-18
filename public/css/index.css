@@ -185,7 +185,7 @@ body {
   left: 0;
   width: 100%;
   height: 3.5rem;
-  margin: 0;
+  margin: 0 0 40px 0;
   padding: 0;
   color: #673ab7;
   z-index: 90;
@@ -213,7 +213,7 @@ body {
   color: white;
 }
 #container .feature {
-  margin: 40px 0;
+  margin: 40px 0 0 0;
   font-family: "Roboto", sans-serif;
   /*.tile
    * display: inline-block
@@ -262,11 +262,14 @@ body {
 #container .feature .tile-row .tile {
   display: block;
   position: relative;
-  margin: 5px 5px;
-  padding: 20px 0px 20px 20px;
   width: auto;
   min-height: 100px;
+  margin: 10px 0;
+}
+#container .feature .tile-row .tile .content {
   background: whitesmoke;
+  margin: 0 5px;
+  padding: 20px 20px;
 }
 #container .feature .tile-row .tile.empty {
   background: transparent;
@@ -313,19 +316,23 @@ body {
   float: none;
   margin: 10px 0;
 }
-@media (min-width: 800px) {
+@media (min-width: 900px) {
   #container .feature .tile-row {
     display: -webkit-inline-box;
     display: -webkit-inline-flex;
     display: -ms-inline-flexbox;
     display: inline-flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
     width: 100%;
     -webkit-box-sizing: padding-box;
     -moz-box-sizing: padding-box;
     box-sizing: padding-box;
   }
   #container .feature .tile-row .tile {
-    width: 100%;
+    width: 50%;
+    margin: 25px 0;
   }
   #container .feature .tile-row .left {
     float: left !important;
@@ -343,6 +350,60 @@ body {
   }
 }
 
+.webcam {
+  width: 100%;
+  -webkit-transform: translateY(45px);
+  -ms-transform: translateY(45px);
+  transform: translateY(45px);
+  -webkit-filter: brightness(0.95) contrast(1.25);
+  filter: brightness(0.95) contrast(1.25);
+}
+.webcam.grayscale {
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
+.webcam.sepia {
+  -webkit-filter: sepia(1);
+  filter: sepia(1);
+}
+
+.image-menu {
+  margin-top: 20px;
+}
+.image-menu .image-menu-item {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: white;
+  -webkit-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  transform: translateY(-10px);
+  text-align: center;
+  cursor: pointer;
+}
+.image-menu .image-menu-item#capture {
+  background: #512da8;
+  width: 60px;
+  height: 60px;
+  -webkit-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  transform: translateY(0px);
+}
+.image-menu .image-menu-item i {
+  position: relative;
+  font-size: 25px;
+  top: 18px;
+}
+
 .now-playing {
   height: 100vh;
+  margin-top: 0;
+}
+.now-playing .left {
+  position: absolute;
+  height: 90vh;
+  width: 50%;
+  background: red;
 }
