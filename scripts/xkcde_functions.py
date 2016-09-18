@@ -27,11 +27,11 @@ def intrepreter(text):
 def functions_LED():
     """ Judges which function to use."""
     # Hard-coded coloured LED lights positions.
-    red1 = LED()
-    red2 = LED()
-    yellow1 = LED()
-    yellow2 = LED()
-    white = LED()
+    red1 = LED(17)
+    red2 = LED(18)
+    yellow1 = LED(23)
+    yellow2 = LED(24)
+    white = LED(25)
 
     for keyword in keywords:
         if keyword=="on":
