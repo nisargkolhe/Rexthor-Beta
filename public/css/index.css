@@ -316,7 +316,7 @@ body {
   float: none;
   margin: 10px 0;
 }
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
   #container .feature .tile-row {
     display: -webkit-inline-box;
     display: -webkit-inline-flex;
@@ -370,6 +370,13 @@ body {
 .image-menu {
   margin-top: 20px;
 }
+.image-menu span {
+  display: inline-block;
+  font-size: 25px;
+  -webkit-transform: translateY(15px);
+  -ms-transform: translateY(15px);
+  transform: translateY(15px);
+}
 .image-menu .image-menu-item {
   display: inline-block;
   width: 50px;
@@ -398,12 +405,95 @@ body {
 }
 
 .now-playing {
-  height: 100vh;
   margin-top: 0;
 }
 .now-playing .left {
+  float: none;
   position: absolute;
   height: 90vh;
-  width: 50%;
-  background: red;
+  width: 400px;
+  margin-bottom: 30px;
+}
+@media (min-width: 1000px) {
+  .now-playing .left {
+    width: 600px;
+  }
+}
+@media (min-width: 1280px) {
+  .now-playing .left {
+    width: 800px;
+  }
+}
+@media (max-width: 700px) {
+  .now-playing .left {
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    margin-bottom: 15px;
+  }
+}
+.now-playing .left .cover-art, .now-playing .left .controls {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: url("../assets/demo.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  -webkit-filter: brightness(0.95) contrast(1.15);
+  filter: brightness(0.95) contrast(1.15);
+}
+.now-playing .left .controls {
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.now-playing .left .controls:hover {
+  opacity: 1;
+}
+.now-playing .left .controls .control-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.now-playing .left .controls .control-bar audio {
+  width: 100%;
+}
+.now-playing .right {
+  float: none;
+  position: relative;
+  overflow-y: scroll;
+  overflow: hidden;
+  height: 90vh;
+  width: auto;
+  margin: 0 0 30px 420px;
+  background: blue;
+}
+@media (min-width: 1000px) {
+  .now-playing .right {
+    margin: 0 0 0 620px;
+  }
+}
+@media (min-width: 1280px) {
+  .now-playing .right {
+    margin: 0 0 0 820px;
+  }
+}
+@media (max-width: 700px) {
+  .now-playing .right {
+    position: relative;
+    margin: 0 0 30px 0;
+    width: 100%;
+    height: 50vh;
+  }
+}
+
+audio::-webkit-media-controls-panel {
+  background: transparent;
+}
+
+audio::-webkit-media-controls-mute-button, audio::-webkit-media-controls-play-button {
+  background-color: #673ab7;
 }
