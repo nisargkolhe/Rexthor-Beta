@@ -9,9 +9,8 @@
 <template name="ApplicationLayout">
   {{> yield "header"}}
   
-  <div class="">
-  {{> yield "main"}}
-  </div>
+  {{> yield "landing"}}
+  {{> yield "body"}}}
 </template>
 
 <!--<template name="home">
@@ -23,7 +22,60 @@
   {{header}}
 </template>
 
+<template name="video">
+<video autoplay="true" id="videoElement">
+ 
+</video>
+</template>
+
+<template name="frame">
+{{>home}}
+{{>bodyFeatures}}
+</template>
+
 <template name="home"> 
+
+
+<div id="voice-recognition">
+    <canvas id="voice-canvas"></canvas>
+        <button onclick="startButton(event)" class="js-voice" id="voice-input">
+            <svg class="mic" viewBox="0 0 480 480">
+                <g>
+                    <path d="M290.991,240.991c0,26.392-21.602,47.999-48.002,47.999h-11.529c-26.4,0-48.002-21.607-48.002-47.999V104.002   c0-26.4,21.602-48.004,48.002-48.004h11.529c26.4,0,48.002,21.604,48.002,48.004V240.991z"/>
+                    <path d="M342.381,209.85h-8.961c-4.932,0-8.961,4.034-8.961,8.961v8.008c0,50.26-37.109,91.001-87.361,91.001   c-50.26,0-87.109-40.741-87.109-91.001v-8.008c0-4.927-4.029-8.961-8.961-8.961h-8.961c-4.924,0-8.961,4.034-8.961,8.961v8.008   c0,58.862,40.229,107.625,96.07,116.362v36.966h-34.412c-4.932,0-8.961,4.039-8.961,8.971v17.922c0,4.923,4.029,8.961,8.961,8.961   h104.688c4.926,0,8.961-4.038,8.961-8.961v-17.922c0-4.932-4.035-8.971-8.961-8.971h-34.43v-36.966   c55.889-8.729,96.32-57.5,96.32-116.362v-8.008C351.342,213.884,347.303,209.85,342.381,209.85z"/>
+                </g>
+            </svg>
+        </button>
+    <div id="voice-text">
+        <div id="info">
+            <p id="info_start">
+                Tap the mic to start speaking<br><a href="#">or click here to scroll down.</a>
+            </p>
+            <p id="info_speak_now" style="display:none">
+                Speak now.
+            </p>
+            <p id="info_no_speech" style="display:none">
+                No speech was detected. You may need to adjust your <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone settings</a>.</p>
+            <p id="info_no_microphone" style="display:none">
+                No microphone was found. Ensure that a microphone is installed and that <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone settings</a> are configured correctly.</p>
+            <p id="info_allow" style="display:none">Click the "Allow" button above to enable your microphone.</p>
+            <p id="info_denied" style="display:none">Permission to use microphone was denied.</p>
+            <p id="info_blocked" style="display:none">Permission to use microphone is blocked. To change,
+                go to chrome://settings/contentExceptions#media-stream</p>
+            <p id="info_upgrade" style="display:none">Web Speech API is not supported by this browser.
+                 Upgrade to <a href="//www.google.com/chrome">Chrome</a>
+                 version 25 or later.</p>
+        </div>
+        <div id="results">
+          <span id="final_span" class="final js-final"></span>
+          <span id="interim_span" class="interim js-interim"></span>
+        </div>
+    </div>
+</div>
+<!--
+
+
+
 <h1>{{message}}</h1>
 <div id="info">
   <p id="info_start">Click on the microphone icon and begin speaking.</p>
@@ -51,7 +103,7 @@
   <span id="final_span" class="final js-final"></span>
   <span id="interim_span" class="interim js-interim"></span>
 </div>
-
+-->
 <script>
 
 var create_email = false;
@@ -62,7 +114,7 @@ var start_timestamp;
 if (!('webkitSpeechRecognition' in window)) {
   upgrade();
 } else {
-  start_button.style.display = 'inline-block';
+  //voice-input.style.display = 'inline-block';
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
   recognition.interimResults = true;
@@ -70,17 +122,17 @@ if (!('webkitSpeechRecognition' in window)) {
   recognition.onstart = function() {
     recognizing = true;
     showInfo('info_speak_now');
-    start_img.src = 'mic-animate.gif';
+    //start_img.src = 'mic-animate.gif';
   };
 
   recognition.onerror = function(event) {
     if (event.error == 'no-speech') {
-      start_img.src = 'mic.gif';
+      //start_img.src = 'mic.gif';
       showInfo('info_no_speech');
       ignore_onend = true;
     }
     if (event.error == 'audio-capture') {
-      start_img.src = 'mic.gif';
+      //start_img.src = 'mic.gif';
       showInfo('info_no_microphone');
       ignore_onend = true;
     }
@@ -99,7 +151,7 @@ if (!('webkitSpeechRecognition' in window)) {
     if (ignore_onend) {
       return;
     }
-    start_img.src = 'mic.gif';
+    //start_img.src = 'mic.gif';
     if (!final_transcript) {
       showInfo('info_start');
       return;
@@ -136,7 +188,7 @@ if (!('webkitSpeechRecognition' in window)) {
 }
 
 function upgrade() {
-  start_button.style.visibility = 'hidden';
+  //voice-input.style.visibility = 'hidden';
   showInfo('info_upgrade');
 }
 
@@ -151,40 +203,6 @@ function capitalize(s) {
   return s.replace(first_char, function(m) { return m.toUpperCase(); });
 }
 
-/*function createEmail() {
-  var n = final_transcript.indexOf('\n');
-  if (n < 0 || n >= 80) {
-    n = 40 + final_transcript.substring(40).indexOf(' ');
-  }
-  var subject = encodeURI(final_transcript.substring(0, n));
-  var body = encodeURI(final_transcript.substring(n + 1));
-  window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
-}
-
-function copyButton() {
-  if (recognizing) {
-    recognizing = false;
-    recognition.stop();
-  }
-  copy_button.style.display = 'none';
-  copy_info.style.display = 'inline-block';
-  showInfo('');
-}
-
-function emailButton() {
-  if (recognizing) {
-    create_email = true;
-    recognizing = false;
-    recognition.stop();
-  } else {
-    createEmail();
-  }
-  email_button.style.display = 'none';
-  email_info.style.display = 'inline-block';
-  showInfo('');
-}
-*/
-
 function startButton(event) {
   if (recognizing) {
     recognition.stop();
@@ -196,7 +214,6 @@ function startButton(event) {
   ignore_onend = false;
   final_span.innerHTML = '';
   interim_span.innerHTML = '';
-  start_img.src = 'mic-slash.gif';
   showInfo('info_allow');
   showButtons('none');
   start_timestamp = event.timeStamp;
@@ -226,8 +243,235 @@ function showButtons(style) {
   copy_info.style.display = 'none';
   email_info.style.display = 'none';*/
 }
+
+
+/*
+** About Me Canvas
+** Inspired from: http://codepen.io/charliekuldip/pen/KCpHn
+*/
+
+// Variables
+var parent = document.getElementById("voice-recognition");
+var canvas = document.getElementById("voice-canvas");
+var context = canvas.getContext("2d");
+var canvasWidth = canvas.width = parent.clientWidth;
+var canvasHeight = canvas.height = parent.clientHeight;
+var cellSize = Math.ceil(canvasWidth/15);
+var amplitude = 0;
+var time = -1;
+var voiceInput = document.getElementById("voice-input");
+
+var render = function(){
+    context.clearRect(0, 0, canvasWidth, canvasHeight);
+    time+=3;
+    if (voiceInput.classList.contains('on') && amplitude < 60){
+        amplitude += 5;
+    }
+    if (!voiceInput.classList.contains('on') && amplitude > 0){
+        amplitude -= 10;
+    }
+    for (var i = 1; i < canvasWidth/2; i++){
+        var x = i;
+        var y = amplitude * (i/canvasWidth) * Math.sin((x + time)/30);
+        context.beginPath();
+        context.moveTo(x, y + canvasHeight/2);
+        context.lineTo(x, canvasHeight);
+        context.lineWidth = 2;
+        context.strokeStyle = "#512DA8";
+        context.globalAlpha = 1;
+        context.closePath();
+        context.stroke();
+        context.beginPath();
+        context.moveTo(canvasWidth - x, y + canvasHeight/2);
+        context.lineTo(canvasWidth - x, canvasHeight);
+        context.lineWidth = 2;
+        context.strokeStyle = "#512DA8";
+        context.globalAlpha = 1;
+        context.closePath();
+        context.stroke();
+    }
+};
+
+setInterval(render, 10);
+
+// Events
+voiceInput.addEventListener("mousedown", function(e){
+    if (voiceInput.classList.contains('on')) {
+        voiceInput.classList.remove('on');
+    } else {
+        voiceInput.classList.add('on');
+    }
+}, false);
+
+</script>
+
+</template>
+
+
+<template name="bodyFeatures">
+           <div id="container">
+            <div id="menu">
+                <div class="content-w">
+                    <div class="right">
+                        <div class="item trigger">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <a class="mic scroller" href="#" scrollTo="#voice-recognition">
+                    <i class="fa fa-microphone"></i>
+                </a>
+            </div>
+            {{> devices}}
+            {{> emotions}}
+            {{> music}}
+        </div>
+</template>
+
+<template name="emotions">
+  <div id="pic" class="feature dark transparent">
+      <div class="heading">
+                    <div class="content-w">
+                        <div class="image-menu">
+                            <div class="image-menu-item" id="capture"><i class="fa fa-camera"></i></div>
+                            <span>Let's try some emotion?</span>
+                        </div>
+                    </div>
+                </div>
+      <div class="content-h">
+          <video class="webcam" autoplay></video>
+          <img src="" style="display: none;">
+<canvas style="display:none; position: absolute; width:auto; height:100% " id="photo"></canvas>
+          <input type="file" style="display:none" accept="image/*;capture=camera">
+          <device type="media" style="display:none" onchange="update(this.data)"></device>
+      </div>
+  </div>
+<script type="text/javascript">
+  function update(stream) {
+    document.querySelector('video').src = stream.url;
+}
+
+function hasGetUserMedia() {
+    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+}
+
+if (!hasGetUserMedia()){
+  alert('getUserMedia() is not supported in your browser');
+}
+
+var errorCallback = function(e) {
+    console.log('Reeeejected!', e);
+};
+function snapshot() {
+    if (localMediaStream) {
+      ctx.drawImage(video, 0, 0);
+      // "image/webp" works in Chrome.
+      // Other browsers will fall back to image/png.
+      document.querySelector('img').src = canvas.toDataURL('image/webp');
+    }
+  }
+      var video = document.querySelector('video');
+        var localMediaStream = null;
+          var ctx = canvas.getContext('2d');
+
+
+  video.addEventListener('click', snapshot, false);
+navigator.getUserMedia({video: true, audio: false}, function(stream) {
+    video.src = window.URL.createObjectURL(stream);
+    localMediaStream = stream;
+    video.onloadedmetadata = function(e) {
+
+    };
+}, errorCallback);
 </script>
 </template>
 
+<template name="devices">
+
+<div id="device" class="feature">
+                <div class="heading">
+                    <div class="content-w">
+                        <h2>Devices Connected</h2>
+                    </div>
+                </div>
+                <div class="content-w">
+                    <div class="tile-row">
+                        <div class="tile">
+                            <div class="image"></div>
+                            <div class="desc">
+                                <div class="left">
+                                    <h3>Ishaan's Macbook Pro</h3>
+                                    <h5>Commands:</h5>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                </div>
+                                <div class="right">
+                                    <h5>IP : <span>127.0.0.1</span></h5>
+                                    <h5>Color: <span>Red</span></h5>
+                                    <h5>Status: <span class="on">On</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+</template>
+
+<template name="music">
+  <div id="music" class="now-playing feature dark">
+                <div class="heading">
+                    <div class="content-w">
+                        <h2>Now Playing</h2>
+                    </div>
+                </div>
+                <div class="content-w">
+                    <div class="left">
+                        <div class="cover-art picture" data-bg="assets/demo.jpg" style="background: url('assets/demo.jpg') center center / cover no-repeat;"></div>
+                        <div class="controls">
+                            <div class="control-bar">
+                                <div class="player-control" id="prev">
+                                    <i class="fa fa-step-backward"></i>
+                                </div>
+                                <div class="player-control" id="musictrigger">
+                                    <i class="fa fa-play"></i>
+                                    <i class="fa fa-pause"></i>
+                                </div>
+                                <div class="player-control" id="next">
+                                    <i class="fa fa-step-forward"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <h1 id="song-name">42</h1>
+                            <h2 id="song-artist">Coldplay</h2>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="heading">
+                            <h2>Current Playlist</h2>
+                            <h1>Sad Euphoria</h1>
+                        </div>
+                        <div id="songs" class="songs">
+                            <div class="song"><div class="picture cover-art" data-bg="assets/demo.jpg" style="background: url(&quot;assets/demo.jpg&quot;) center center / cover no-repeat;"></div><div class="desc"><h1>Strawberry Swing</h1><h2>Coldplay - Viva La Vida</h2><a href="">Buy</a> <span>•</span> <a href="">View on Spotify</a></div></div>
+                            <div class="song"><div class="picture cover-art" data-bg="assets/demo.jpg" style="background: url(&quot;assets/demo.jpg&quot;) center center / cover no-repeat;"></div><div class="desc"><h1>Strawberry Swing</h1><h2>Coldplay - Viva La Vida</h2><a href="">Buy</a> <span>•</span> <a href="">View on Spotify</a></div></div>
+                            <div class="song"><div class="picture cover-art" data-bg="assets/demo.jpg" style="background: url(&quot;assets/demo.jpg&quot;) center center / cover no-repeat;"></div><div class="desc"><h1>Strawberry Swing</h1><h2>Coldplay - Viva La Vida</h2><a href="">Buy</a> <span>•</span> <a href="">View on Spotify</a></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="feature footer dark">
+                    <div class="content">
+                        <p>
+                            Developed by <a href="#">Nisarg Kolhe</a>, <a href="#">Dimple Dhawan</a>, <a href="#">Shivam Bajpayi</a> &amp; <a href="#">Ishaan Saxena</a>. Designed by Ishaan Saxena.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+</template>
 
 

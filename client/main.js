@@ -13,7 +13,9 @@ Router.configure({
 });
 // specify the top level route, the page users see when they arrive at the site
 Router.route('/', function () {
-  this.render("home", {to:"main"}); 
+  this.render("home", {to:"landing"}); 
+  this.render("bodyFeatures", {to:"body"}); 
+
 });
 
 Template.home.helpers({
@@ -25,8 +27,6 @@ Template.home.helpers({
 	}
 });
 
-
-var audioRecorder = new AudioRecorder();
 
 Template.home.events({
 	"click .js-voice": function(event){
@@ -40,15 +40,67 @@ Template.home.events({
 
 			Session.set("speechText", textFinal + " " + textInt);
 
-			Meteor.call('getAccessToken',  function(error,result){ 
+			/*Meteor.call('getAccessToken',  function(error,result){ 
 				if(error){
 					console.log(error.reason);
 				}
 				console.log(result);
-			});
+			});*/
+
+
 			Session.set("recording", false);
+
+			Meteor.call('consoleExecSync', textFinal + " " + textInt, function(err,res){
+      				if(err){
+						console.log(err.reason);
+					}
+					console.log(res);
+      			});
 		}
 		
 	}
 
+});
+
+Template.emotions.events({
+	"click .js-capture": function(event){
+		
+  
+      var video = document.querySelector('video');
+
+      var b_canvas1 = document.getElementById("photo");
+      b_canvas1.width = 640;
+	  b_canvas1.height = 480;
+      var b_context1 = b_canvas1.getContext("2d");
+
+      b_context1.drawImage(video, 0, 0);
+
+      // "image/webp" works in Chrome.
+      // Other browsers will fall back to image/png.
+
+      document.querySelector('img').src = b_canvas1.toDataURL('image/webp');
+
+      var options = {
+      	apiKey: '9fb1fd2f7d426a9',
+      	image: b_canvas1.toDataURL('image/png'),
+
+      };
+
+      Imgur.upload(options, function(error, data){
+      		if(error){
+      			console.log(error);
+      		}
+      		else
+      			console.log(data.link);
+      			Meteor.call('getEmotions', data.link, function(err,res){
+      				if(err){
+						console.log(err.reason);
+					}
+					console.log(res);
+      			});
+      });
+
+      var win = window.open(document.querySelector('img').src);
+      win.focus();	    
+	}
 });
