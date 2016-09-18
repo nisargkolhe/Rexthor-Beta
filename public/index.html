@@ -9,8 +9,9 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <!-- Scripts -->
+        <script type="text/javascript" src="js/jquery.js"></script>
     </head>
-
     <body>
 
 
@@ -77,99 +78,8 @@
                     </div>
                 </div>
                 <div class="content-w">
-                    <div class="tile-row">
-                        <div class="tile">
-                            <div class="content">
-                                <div class="image"></div>
-                                <div class="desc">
-                                    <div class="left">
-                                        <h3>Ishaan's Macbook Pro</h3>
-                                        <h5>Commands:</h5>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        </p>
-                                    </div>
-                                    <div class="right">
-                                        <h5>IP : <span>127.0.0.1</span></h5>
-                                        <h5>Status: <span class="on">On</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tile">
-                            <div class="content">
-                                <div class="image"></div>
-                                <div class="desc">
-                                    <div class="left">
-                                        <h3>Google Nexus 6P</h3>
-                                        <h5>Commands:</h5>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        </p>
-                                    </div>
-                                    <div class="right">
-                                        <h5>IP : <span>127.0.0.42</span></h5>
-                                        <h5>Status: <span class="on">On</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tile">
-                            <div class="content">
-                                <div class="image"></div>
-                                <div class="desc">
-                                    <div class="left">
-                                        <h3>Raspberry Pi 3</h3>
-                                        <h5>Commands:</h5>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        </p>
-                                    </div>
-                                    <div class="right">
-                                        <h5>IP : <span>0.0.0.0</span></h5>
-                                        <h5>Status: <span class="on">On</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tile">
-                            <div class="content">
-                                <div class="image"></div>
-                                <div class="desc">
-                                    <div class="left">
-                                        <h3>Philips LED Lighting - Ceiling</h3>
-                                        <h5>Commands:</h5>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        </p>
-                                    </div>
-                                    <div class="right">
-                                        <h5>Color: <span>Red</span></h5>
-                                        <h5>Status: <span class="on">On</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tile">
-                            <div class="content">
-                                <div class="image"></div>
-                                <div class="desc">
-                                    <div class="left">
-                                        <h3>Philips LED Lighting - Bed</h3>
-                                        <h5>Commands:</h5>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        </p>
-                                    </div>
-                                    <div class="right">
-                                        <h5>Status: <span class="off">Off</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tile empty">
+                    <div id="devices" class="tile-row">
 
-                        </div>
                     </div>
                 </div>
             </div>
@@ -202,21 +112,43 @@
                 </div>
                 <div class="content-w">
                     <div class="left">
-                        <div class="cover-art"></div>
+                        <div class="cover-art picture" data-bg="assets/demo.jpg"></div>
                         <div class="controls">
                             <div class="control-bar">
-                                <audio controls>
-                                  <!--<source src="assets/demo.mp3" type="audio/ogg">-->
-                                  <source src="assets/demo.mp3" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                                </audio>
+                                <div class="player-control" id="prev">
+                                    <i class="fa fa-step-backward"></i>
+                                </div>
+                                <div class="player-control" id="trigger">
+                                    <i class="fa fa-play"></i>
+                                    <i class="fa fa-pause"></i>
+                                </div>
+                                <div class="player-control" id="next">
+                                    <i class="fa fa-step-forward"></i>
+                                </div>
                             </div>
                         </div>
-                        <h1 id="song-name"></h1>
-                        <h2 id="song-artist"></h1>
+                        <div class="details">
+                            <h1 id="song-name">42</h1>
+                            <h2 id="song-artist">Coldplay</h1>
+                        </div>
                     </div>
                     <div class="right">
+                        <div class="heading">
+                            <h2>Current Playlist</h2>
+                            <h1>Sad Euphoria</h1>
+                        </div>
+                        <div id="songs" class="songs">
 
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="feature footer dark">
+                    <div class="content">
+                        <p>
+                            Developed by <a href="#">Nisarg Kolhe</a>, <a href="#">Dimple Dhawan</a>, <a href="#">Shivam Bajpayi</a> &amp; <a href="#">Ishaan Saxena</a>. Designed by Ishaan Saxena.
+                        </p>
                     </div>
                 </div>
 
@@ -226,5 +158,6 @@
         <!-- Scripts -->
         <script type="text/javascript" src="js/voiceCanvas.js"></script>
         <script type="text/javascript" src="js/camera.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
