@@ -23,7 +23,7 @@ var render = function(){
     if (!voiceInput.classList.contains('on') && amplitude > 0){
         amplitude -= 10;
     }
-    for (var i = 1; i < canvasWidth/2; i++){
+    for (var i = 1; i < canvasWidth/2; i+=4){
         var x = i;
         var y = amplitude * (i/canvasWidth) * Math.sin((x + time)/30);
         context.beginPath();

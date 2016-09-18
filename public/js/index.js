@@ -24,13 +24,13 @@ $(document).ready(function(){
                 'name': "Philips LED - Floor",
                 'data': [['Color', 'Multiple'],['Status', 'On']],
                 'commands': ['Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'],
-                'image': ''
+                'image': 'http://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/topic_images/2014/phillips-hue.png'
             },
             {
                 'name': "Philips LED - Bedside",
                 'data': [['Color', 'Yellow'],['Status', 'Off']],
                 'commands': ["Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
-                'image': ''
+                'image': 'http://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/topic_images/2014/phillips-hue.png'
             }
 
         ],
