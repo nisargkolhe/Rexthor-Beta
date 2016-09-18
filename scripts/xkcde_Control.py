@@ -16,9 +16,10 @@ def intrepreter():
     emotion = sys.argv[2]
     # Separating keywords using the default demlimiter.
     keywords = speech_data.split(" ")
-
+    keywords = [keyword.lower() for keyword in keywords]
+    print(keywords+emotion)
     # Creating keyword lists for different functions.
-    listLED=['light','LED','bright','lamp','torch','glare','glow','dazzle']
+    listLED=['light','led','bright','lamp','torch','glare','glow','dazzle']
     listMusic=['music','song','play','artist','tune','track']
 
     for keyword in keywords:
@@ -34,3 +35,5 @@ def intrepreter():
             return music
         else:
             continue
+
+intrepreter()
