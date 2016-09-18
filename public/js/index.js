@@ -18,7 +18,7 @@ $(document).ready(function(){
                 'name': "Raspberry Pi 3",
                 'data': [['IP', '127.0.0.42'],['Status', 'On']],
                 'commands': ['Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'],
-                'image': ''
+                'image': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Raspberry_Pi_Logo.svg/512px-Raspberry_Pi_Logo.svg.png'
             },
             {
                 'name': "Philips LED - Floor",
