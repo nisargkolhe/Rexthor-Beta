@@ -6,13 +6,13 @@ $(document).ready(function(){
                 'name': "Ishaan's Macbook Pro",
                 'data': [['IP', '127.0.0.1'],['Status', 'On']],
                 'commands': ['Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'],
-                'image': ''
+                'image': 'https://upload.wikimedia.org/wikipedia/commons/0/07/Macbook_Pro_PSD.png'
             },
             {
                 'name': "Google Nexus 6P",
                 'data': [['IP', '127.0.0.2'],['Status', 'On']],
                 'commands': ['Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'],
-                'image': ''
+                'image': 'http://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/topic_images/2015/nexus-6p-topic-full.png'
             },
             {
                 'name': "Raspberry Pi 3",
@@ -79,7 +79,7 @@ $(document).ready(function(){
     };
 
     for (var i = 0; i < data.devices.length; i++) {
-        var el = "<div class='tile'><div class='content'><div class='image ' data-bg='"+ data.devices[i].image +"'></div><div class='desc'><div class='left'><h3>";
+        var el = "<div class='tile'><div class='content'><div class='image picture-contain' data-bg='"+ data.devices[i].image +"'></div><div class='desc'><div class='left'><h3>";
         el += data.devices[i].name + "</h3><h5>Commands:</h5><p>";
         for (var j = 0; j < data.devices[j]['commands'].length; j++){
             el += data.devices[i]['commands'][j] + "<br>"
@@ -108,13 +108,21 @@ $(document).ready(function(){
         });
     });
 
-    $('.menu-trigger').click(function(){
-        $('.menu').toggleClass('on');
-        $('.menu-trigger').toggleClass('on');
+    $('.picture-contain').each(function(){
+        $this = $(this);
+        $this.css({
+            'background': "url('" + $this.attr('data-bg') + "')",
+            "background-size": "contain",
+            "background-position": "center center",
+            "background-repeat": "no-repeat"
+        });
     });
 
     $('.trigger').click(function(){
-        $('#menux').toggleClass('visible');
+        if ($(window).scrollTop() > $(window).outerHeight()){
+            $('#menux').toggleClass('visible');
+            $(this).toggleClass('open');
+        }
     });
 
     $('.scroller').click(function(e){
@@ -125,8 +133,10 @@ $(document).ready(function(){
     });
 
     $(window).scroll(function(){
-        if ($('#menux').hasClass('visible')) $('#menux').removeClass('visible');
+        if ($('#menux').hasClass('visible')){
+            $('#menux').removeClass('visible');
+            $('.trigger').removeClass('open');
+        }
     });
-
 
 });

@@ -582,6 +582,7 @@ body {
   color: whitesmoke;
   font-weight: 300;
   font-size: 25px;
+  margin: 0 !important;
 }
 .now-playing .right .song .desc h2 {
   color: #666666;
