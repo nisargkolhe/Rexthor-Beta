@@ -5,7 +5,7 @@ functions.
 from gpiozero import LED
 from time import sleep
 
-def intrepreter(text, emotion):
+def intrepreter(text):
     """ Manipulates and searches for keywords to different functions."""
 
     # Separating keywords using the default demlimiter.
@@ -20,6 +20,7 @@ def intrepreter(text, emotion):
             functions_LED()
         elif keyword in listMusic:
             functions_Music()
+            break
         else:
             continue
 
