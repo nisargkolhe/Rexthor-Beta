@@ -8,11 +8,33 @@
         <!-- Stylesheets -->
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/menu.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         <!-- Scripts -->
         <script type="text/javascript" src="js/jquery.js"></script>
     </head>
     <body>
+
+        <div id="menux">
+            <div id="menu-content">
+                <div class="menu-header">
+                    <!--<img src="assets/me.jpg">-->
+                    <div class="header-content">
+                        <h3>Menu</h3>
+                    </div>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item"><a href="#" class="scroller" scrollTo="#voice-recognition"><i class="fa fa-microphone"></i>Voice Command</a></div>
+                    <h5>What do you wanna see?</h5>
+                    <div class="menu-item"><a href="#" class="scroller" scrollTo="#device"><i class="fa fa-laptop"></i>Devices Paired</a></div>
+                    <div class="menu-item"><a href="#" class="scroller" scrollTo="#pic"><i class="fa fa-smile-o"></i>Emotion Recogntion</a></div>
+                    <div class="menu-item"><a href="#" class="scroller" scrollTo="#music"><i class="fa fa-headphones"></i>Now Playing</a></div>
+                </div>
+                <div class="menu-footer">
+                    <a class="scroller" scrollTo="#thoughts">Feeling low? Try an upbeat playlist!</em></a>
+                </div>
+            </div>
+        </div>
 
 
         <!-- Voice -->
@@ -29,7 +51,7 @@
             <div id="voice-text">
                 <div id="info">
                     <p id="info_start">
-                        Tap the mic to start speaking<br><a href="#">or click here to scroll down.</a>
+                        Tap the mic to start speaking<br><a href="#" class="scroller" scrollTo="#device">or click here to scroll down.</a>
                     </p>
                     <p id="info_speak_now" style="display:none">
                         Speak now.
@@ -59,19 +81,19 @@
             <div id="menu">
                 <div class="content-w">
                     <div class="right">
-                        <div class="item">
-                            <i class="fa fa-bars"></i>
+                        <div class="item trigger">
+                            <div class="bar"></div>
                         </div>
                     </div>
                 </div>
-                <div class="mic">
+                <a class="mic scroller" href="#" scrollTo="#voice-recognition">
                     <i class="fa fa-microphone"></i>
-                </div>
+                </a>
             </div>
 
 
             <!-- Devices -->
-            <div class="feature">
+            <div id="device"class="feature">
                 <div class="heading">
                     <div class="content-w">
                         <h2>Devices Connected</h2>
@@ -86,7 +108,7 @@
 
 
             <!-- Emotion -->
-            <div class="feature dark transparent">
+            <div id="pic"class="feature dark transparent">
                 <div class="heading">
                     <div class="content-w">
                         <div class="image-menu">
@@ -104,7 +126,7 @@
 
 
             <!-- Spotify -->
-            <div class="now-playing feature dark">
+            <div id="music"class="now-playing feature dark">
                 <div class="heading">
                     <div class="content-w">
                         <h2>Now Playing</h2>
@@ -118,7 +140,7 @@
                                 <div class="player-control" id="prev">
                                     <i class="fa fa-step-backward"></i>
                                 </div>
-                                <div class="player-control" id="trigger">
+                                <div class="player-control" id="musictrigger">
                                     <i class="fa fa-play"></i>
                                     <i class="fa fa-pause"></i>
                                 </div>
@@ -159,5 +181,6 @@
         <script type="text/javascript" src="js/voiceCanvas.js"></script>
         <script type="text/javascript" src="js/camera.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/plugins.js"></script>
     </body>
 </html>

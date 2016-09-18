@@ -113,4 +113,20 @@ $(document).ready(function(){
         $('.menu-trigger').toggleClass('on');
     });
 
+    $('.trigger').click(function(){
+        $('#menux').toggleClass('visible');
+    });
+
+    $('.scroller').click(function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var dest = $($this.attr("scrollTo")).offset().top;
+		$("html,body").animate({scrollTop: dest},600,$.bez([.56,0,.39,1]));
+    });
+
+    $(window).scroll(function(){
+        if ($('#menux').hasClass('visible')) $('#menux').removeClass('visible');
+    });
+
+
 });
